@@ -1,0 +1,197 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{color}
+\usepackage{fontawesome5}
+\usepackage{bookmark}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+% \usepackage{changepage} % imported to be able to use \begin{adjustwidth}
+
+\hypersetup{
+  breaklinks=true,
+  colorlinks=true,
+  linkcolor=cyan,
+  urlcolor=MyDarkBlue,
+  pdfauthor={Frank Promise Edah},
+  pdftitle={Resume}
+}
+
+\definecolor{MyDarkBlue}{rgb}{0, 0, 0.45}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting parameters  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength{\tabin}
+\setlength{\tabin}{0em}
+\newlength{\secsep}
+\setlength{\secsep}{0.1cm}
+
+\setlength{\hsize}{0.9\hsize}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+\definecolor{contactgray}{gray}{0.3}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Template Definitions  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\doublelineunder}{\vspace{-4pt}\underline{\rule{525pt}{2pt}}\vspace{2pt}}
+\newcommand{\lineunder}{\vspace*{-8pt}\\\hspace*{-6pt}\hrulefill\\\vspace*{-15pt}}
+\newcommand{\name}[1]{\begin{center}\textsc{\Huge#1}\\\end{center}}
+\newcommand{\position}[1]{\begin{center}\textsc{#1}\end{center}}
+\newcommand{\contact}[1]{\vspace{\secsep}\begin{center}\color{contactgray}{\small#1}\end{center}}
+\newcommand{\education}[4]{\vspace{\secsep}\textbf{#1\hfill#2}\\\textit{#3\hfill#4}\vspace{2\secsep}}
+\newcommand{\educationwithgrade}[5]{\vspace{\secsep}\textbf{#1\hfill#2}\\\textit{#3\hfill#4}\linebreak\textbf{\textit{#5}}\vspace{2\secsep}}
+
+\newenvironment{tabbedsection}[1]{
+  \begin{list}{}{
+    \setlength{\itemsep}{0pt}
+    \setlength{\labelsep}{0pt}
+    \setlength{\labelwidth}{0pt}
+    \setlength{\leftmargin}{\tabin}
+    \setlength{\rightmargin}{\tabin}
+    \setlength{\listparindent}{0pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\partopsep}{0pt}
+    \setlength{\topsep}{#1}
+  }
+  \item[]
+}{\end{list}}
+
+
+\newenvironment{nospacetabbing}{\begin{tabbing}}{\end{tabbing}\vspace{-1.2em}}
+
+\newenvironment{resume_header}{}{\vspace{0pt}}
+
+\newenvironment{resume_section}[1]{
+  \filbreak
+  \vspace{2\secsep}
+  \textsc{\large#1}
+  \lineunder
+  \begin{tabbedsection}{\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{resume_subsection}[2]{
+  \vspace{\secsep}
+  \textbf{#1 \hfill #2} \\ \vspace{-10pt}
+  \begin{tabbedsection}{0.5\secsep}
+}{\end{tabbedsection}}
+
+
+\newenvironment{subitems}{
+  \renewcommand{\labelitemi}{-}
+  \begin{itemize}
+  \setlength{\labelsep}{1em}
+}{\end{itemize}}
+
+\newenvironment{resume_employer}[4]{
+  \vspace{\secsep}
+  \textbf{#1 \hfill #4} \\ 
+  \textit{\small #2 #3}
+  \begin{tabbedsection}{0pt}
+  \begin{subitems}
+}{\end{subitems}\end{tabbedsection}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Start Document     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{resume_header}
+
+  \name{Frank Promise Edah}
+  \position{Site Reliability Engineer}
+  \doublelineunder
+  % \begin{adjustwidth}{-40pt}{-40pt} % used to manipulate margin
+  % \end{adjustwidth} % used to manipulate margin
+    \contact{
+      % \faIcon{phone} (+48) XXX XXX XXX \hspace{0.5cm}
+      \faIcon{envelope} \href{mailto:chiemerieezechukwu@outlook.com}{\underline{\smash{promisefrank97@yahoo.com}}}\hspace{0.5cm}
+      \faIcon{map-marker-alt} Nuremberg, Germany \hspace{0.5cm}
+      \faIcon{github} \href{https://github.com/Frankpromise}{\underline{\smash{Github}}} \hspace{0.5cm}
+      \faIcon{linkedin} \href{https://www.linkedin.com/in/promise-edah-frank-959673159/}{\underline{\smash{LinkedIn}}}
+    }
+    \vspace{4\secsep}
+
+\end{resume_header}
+
+% \begin{resume_section}{Summary}
+%   Software Developer with a degree in computer science and hands-on experience developing, deploying and debugging software solutions in the cloud.
+%   Motivated and eager to take on new challenges while expanding my skill set.
+% \end{resume_section}
+
+\begin{resume_section}{Work Experience}
+  \begin{resume_employer}{Site Reliability Engineer}{Gfk-An NIQ Company,}{Nuremberg, Germany}{March 2023 -- Present}
+    \item Lead the integration of Kubecost across Kubernetes clusters; design automation scripts for metric extraction, streamline storage to AWS S3, orchestrate database sync, and facilitate data visualization via PowerBI dashboards.
+    \item Implement Kubernetes ServiceMonitor using Helm charts to scrape metrics from a .NET application; design custom Grafana dashboards. This enhancement streamlines application debugging optimizes troubleshooting, and bolsters incident management effectiveness.
+    \item Implement a Docker-based solution to test Helm chart configurations and host charts on a Nexus repository, leveraging GitLab CI for automation. This initiative significantly reduces the time required for Helm chart testing.
+    \item Develop and manage an internal Kubernetes on-premises platform, serving multiple teams and enabling seamless cluster bootstrapping via an intuitive YAML configuration file, reducing time for deployment and configuration tasks.
+    \item Integrate FluxCD and Helm for continuous deployment and GitOps workflows, significantly reducing deployment time and ensuring consistency across environments.
+    \item Lead the implementation of a team-wide Helm chart, streamlining deployments and boosting developer efficiency through standardized and reusable configurations.
+    \item Mentor team members, particularly on the topics of AWS, Kubernetes, FluxCD, and Helm usage, fostering a culture of knowledge sharing and professional growth.
+  \end{resume_employer}
+
+  \begin{resume_employer}{DevOps Engineer Intern}{Exadel,}{Warsaw, Poland}{June 2022 -- August 2022}
+    \item Assisted senior DevOps engineers in configuring and maintaining cloud infrastructure on AWS.
+    \item Contributed to the automation of deployment pipelines, ensuring swift and reliable software releases.
+    \item Drafted and revised scripts in Bash and Python to automate routine tasks, enhancing operational efficiency.
+    \item Participated in training sessions and workshops to stay updated on the latest DevOps tools and practices.
+    % \item Designed and implemented new features for a multi component backend platform hosted on AWS to manage and monitor energy related IoT devices
+    % \item Analyzed solutions and architectures to allow releases without downtime within a distributed serverless IoT platform
+  \end{resume_employer}
+\end{resume_section}
+
+% \begin{resume_section}{Personal Projects}
+
+%   \begin{resume_subsection}{Python Project Management Library}{October 2021 -- Present}
+%     \begin{subitems}
+%       \item Designed and implemented a python library with several classes to model project management activities and objects. \href{https://github.com/chiemerieezechukwu/project-management}{github.com/chiemerieezechukwu/project-management}
+%     \end{subitems}
+%   \end{resume_subsection}
+
+%   \begin{resume_subsection}{Chat Web App}{July 2020}
+%     \begin{subitems}
+%       \item Used vanilla Javascript, CSS, Flask templating engine (Jinja2) to set up a fully responsive frontend and Flask, Flask-SocketIO,
+%       PostgreSQL for the backend. \href{https://github.com/chiemerieezechukwu/Flask-Chat--Flask-socketio-}{github.com/chiemerieezechukwu/Flask-Chat--Flask-socketio-}
+%     \end{subitems}
+%   \end{resume_subsection}
+
+% \end{resume_section}
+
+\begin{resume_section}{Skills}
+  \begin{nospacetabbing}
+    \textbf{Technical Skills} \= \hspace{2em} \= AWS, Python, Bash, Git, Docker, Kubernetes, Helm, FluxCD, Terraform\\\> \> Pulumi, OpenSearch, Grafana, Prometheus, GitlabCI, GithubActions\\*
+    % \textbf{Cloud Technologies} \> \> AWS Lambda, S3, DynamoDB, EC2, EKS, ECS, Cloudformation, Terraform, Pulumi\\*
+    \textbf{Languages} \> \> Proficient in English; Fluent in Italian\\*
+    \textbf{Other Skills} \> \> Teamwork, Problem Solving, Agile frameworks, Microsoft Project, \LaTeX\\*
+  \end{nospacetabbing}
+\end{resume_section}
+
+\begin{resume_section}{Education}
+  \educationwithgrade{School Of Business And Management}{October 2020 -- November 2022}{M.Sc. Business Administration}{Turin, Italy}{Final Grade: 104/110}
+
+  \educationwithgrade{School Of Business And Management}{September 2017 -- June 2020}{B.Sc. Business And Management}{Turin, Italy}{Final Grade: 97/110}
+\end{resume_section}
+
+\begin{resume_section}{Certifications}
+  \begin{subitems}
+    \item \href{https://www.credly.com/earner/earned/badge/f57b9d96-2c03-45dd-bdd2-95b0f464f791}{KCNA: Kubernetes and Cloud Native Associate} \hfill August 2023
+    \item \href{https://www.credly.com/earner/earned/badge/2b82f982-3f60-455c-82a4-082679866c3d}{AWS Certified Developer Associate} \hfill January 2023
+    \item \href{https://www.credly.com/badges/26043bb9-cca6-4c6c-80ae-51a4ef85da84}{HashiCorp Certified: Terraform Associate} \hfill December 2022
+    \item \href{}{Software Engineering (Nano Degree)} \hfill September 2022
+    \item \href{https://www.credly.com/earner/earned/badge/1751ff0d-b1f8-4eee-993f-98766dc6ccea}{AWS Certified Solutions Architect -- Associate (SAA)} \hfill October 2022
+    \item \href{https://cs.lpi.org/caf/Xamman/certification/verify/LPI000527039/yt3tc4dc54}{Linux Professional Institute: Linux Essentials} \hfill June 2022
+    \item \href{https://www.credly.com/earner/earned/badge/fe5ff96d-d745-4a2e-a2a7-a88d49875938}{AWS Certified Cloud Practitioner (CLF)} \hfill October 2021
+  \end{subitems}
+\end{resume_section}
+
+\end{document}
